@@ -27,7 +27,7 @@ def cloneNode(update, context):
     is_gdtot = is_gdtot_link(link)
     if (is_appdrive or is_gdtot):
         try:
-            msg = sendMessage(f"<b>Processing:</b> <code>{link}</code>", context.bot, update)
+            msg = sendMessage(f"<b>♻️ Processing :</b> <code>{link}</code>", context.bot, update)
             LOGGER.info(f"Processing: {link}")
             if is_appdrive:
                 appdict = appdrive(link)
@@ -40,15 +40,15 @@ def cloneNode(update, context):
             LOGGER.error(e)
             return sendMessage(str(e), context.bot, update)
     if is_gdrive_link(link):
-        msg = sendMessage(f"<b>Cloning:</b> <code>{link}</code>", context.bot, update)
+        msg = sendMessage(f"<b>🔁 Cloning :</b> <code>{link}</code>", context.bot, update)
         LOGGER.info(f"Cloning: {link}")
         status_class = CloneStatus()
         gd = GoogleDriveHelper()
         sendCloneStatus(link, msg, status_class, update, context)
-        result = gd.clone(link, status_class)
+        result, buttons = gd.clone(link, status_class)
         deleteMessage(context.bot, msg)
         status_class.set_status(True)
-        sendMessage(result, context.bot, update)
+        sendMessage(result, context.bot, update, buttons=buttons)
         if is_gdtot:
             LOGGER.info(f"Deleting: {link}")
             gd.deleteFile(link)
@@ -57,7 +57,7 @@ def cloneNode(update, context):
                 LOGGER.info(f"Deleting: {link}")
                 gd.deleteFile(link)
     else:
-        sendMessage("<b>Send a Drive / AppDrive / DriveApp / GDToT link along with command</b>", context.bot, update)
+        sendMessage("<b>✉️ Send a G-Drive / AppDrive / DriveApp / GDToT links along with command 🤒</b>", context.bot, update)
         LOGGER.info("Cloning: None")
 
 @new_thread
@@ -66,8 +66,8 @@ def sendCloneStatus(link, msg, status, update, context):
     while not status.done():
         time.sleep(3)
         try:
-            statmsg = f"<b>Cloning:</b> <a href='{status.source_folder_link}'>{status.source_folder_name}</a>\n━━━━━━━━━━━━━━" \
-                      f"\n<b>Current file:</b> <code>{status.get_name()}</code>\n\n<b>Transferred</b>: <code>{status.get_size()}</code>"
+            statmsg = f"<b>🔁 Cloning :</b> <a href='{status.source_folder_link}'>{status.source_folder_name}</a>\n━━━━━━━━━━━━" \
+                      f"\n<b>🔷 Current file :</b> <code>{status.get_name()}</code>\n\n<b>🔶 Transferred</b> : <code>{status.get_size()}</code>"
             if not statmsg == old_statmsg:
                 editMessage(statmsg, msg)
                 old_statmsg = statmsg
