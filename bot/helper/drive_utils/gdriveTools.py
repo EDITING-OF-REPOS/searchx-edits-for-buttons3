@@ -234,16 +234,16 @@ class GoogleDriveHelper:
                 msg += f'\n\n<b>💽 Size : </b>{get_readable_file_size(self.transferred_size)}'
                 msg += f"\n<b>📦 Type : Folder</b>"
                 msg += f"\n<b>🗂️ SubFolders : </b>{self.total_folders}"
-                msg += f"\n<b>📚 Files : </b>{self.total_files}\n\n<b>📬 Ownerd By : #WhitE_DeviL09</b>"
+                msg += f"\n<b>📚 Files : </b>{self.total_files}\n\n<b>📬 Ownerd By : @mhd_thanzeer</b>"
                 # msg += f'\n\n<b><a href="{self.__G_DRIVE_DIR_BASE_DOWNLOAD_URL.format(dir_id)}">Drive Link</a></b>'
                 
                 url = self.__G_DRIVE_DIR_BASE_DOWNLOAD_URL.format(dir_id)
-                buttons.append([InlineKeyboardButton("💾 Drive Link 💾", url=url)])
+                buttons.append([InlineKeyboardButton("💽 𝗗𝗥𝗜𝗩𝗘 𝗟𝗜𝗡𝗞 💽", url=url)])
                 
                 if DRIVE_INDEX_URL is not None:
                     url = requests.utils.requote_uri(f'{DRIVE_INDEX_URL}/{meta.get("name")}/')
                     # msg += f' <b>| <a href="{url}">Index Link</a></b>'
-                    buttons.append([InlineKeyboardButton("🚀 Index Link 🚀", url=url)])
+                    buttons.append([InlineKeyboardButton("🚀 𝗜𝗡𝗗𝗘𝗫 𝗟𝗜𝗡𝗞 🚀", url=url)])
             else:
                 file = self.copyFile(meta.get('id'), parent_id, status)
                 try:
@@ -253,16 +253,16 @@ class GoogleDriveHelper:
                 msg += f'<b>📂 Movie Name : </b><code>{file.get("name")}</code>'
                 try:
                     msg += f'\n\n<b>💽 Size : {get_readable_file_size(int(meta.get("size", 0)))}</b>'
-                    msg += f'\n<b>📦 Type : {typ}</b>\n\n📬 <b>Ownerd By : #WhitE_DevIL09</b>'
+                    msg += f'\n<b>📦 Type : {typ}</b>\n\n📬 <b>Ownerd By : @mhd_thanzeer</b>'
                     # msg += f'\n\n<b><a href="{self.__G_DRIVE_BASE_DOWNLOAD_URL.format(file.get("id"))}">Drive Link</a></b>'
                     url = self.__G_DRIVE_BASE_DOWNLOAD_URL.format(file.get("id"))
-                    buttons.append([InlineKeyboardButton("💾 Drive Link 💾", url=url)])
+                    buttons.append([InlineKeyboardButton("💽 𝗗𝗥𝗜𝗩𝗘 𝗟𝗜𝗡𝗞 💽", url=url)])
                 except TypeError:
                     pass
                 if DRIVE_INDEX_URL is not None:
                     url = requests.utils.requote_uri(f'{DRIVE_INDEX_URL}/{file.get("name")}')
                     # msg += f' <b>| <a href="{url}">Index Link</a></b>'
-                    buttons.append([InlineKeyboardButton("🚀 Index Link 🚀", url=url)])
+                    buttons.append([InlineKeyboardButton("🚀 𝗜𝗡𝗗𝗘𝗫 𝗟𝗜𝗡𝗞 🚀", url=url)])
         except Exception as err:
             if isinstance(err, RetryError):
                 LOGGER.info(f"Total attempts: {err.last_attempt.attempt_number}")
@@ -507,17 +507,17 @@ class GoogleDriveHelper:
 
             try:
                 self.path.append(
-                    telegraph[acc_no].create_page(title='🔁 DREAMCATCHER CLONE BOT 🔁',
-                                                  author_name='@WhitE_DeviL09',
-                                                  author_url='https://t.me/white_devil09',
+                    telegraph[acc_no].create_page(title='𝐌𝐇𝐃 𝐓𝐇𝐀𝐍𝐙𝐄𝐄𝐑',
+                                                  author_name='@mhd_thanzeer',
+                                                  author_url='https://t.me/mhd_thanzeer',
                                                   html_content=self.telegraph_content[i])['path'])
             except RetryAfterError as e:
                 LOGGER.info(f"Cooldown: {e.retry_after} seconds")
                 time.sleep(e.retry_after)
                 self.path.append(
-                    telegraph[acc_no].create_page(title='🔁 DREAMCATCHER CLONE BOT 🔁',
-                                                  author_name='@WhitE_DeviL09',
-                                                  author_url='https://t.me/white_devil09',
+                    telegraph[acc_no].create_page(title='𝐌𝐇𝐃 𝐓𝐇𝐀𝐍𝐙𝐄𝐄𝐑',
+                                                  author_name='@mhd_thanzeer',
+                                                  author_url='https://t.me/mhd_thanzeer',
                                                   html_content=self.telegraph_content[i])['path'])
 
             if i != 0:
@@ -525,17 +525,17 @@ class GoogleDriveHelper:
                 self.telegraph_content[i-1] += f'<b> | <a href="https://telegra.ph/{self.path[i]}">Next</a></b>'
                 try:
                     telegraph[(acc_no - 1) if i % page_per_acc == 0 else acc_no].edit_page(path = self.path[i-1],
-                                              title='🔁 DREAMCATCHER CLONE BOT 🔁',
-                                              author_name='@WhitE_DeviL09',
-                                              author_url='https://t.me/white_devil09',
+                                              title='𝐌𝐇𝐃 𝐓𝐇𝐀𝐍𝐙𝐄𝐄𝐑',
+                                              author_name='@mhd_thanzeer',
+                                              author_url='https://t.me/mhd_thanzeer',
                                               html_content=self.telegraph_content[i-1])
                 except RetryAfterError as e:
                     LOGGER.info(f"Cooldown: {e.retry_after} seconds")
                     time.sleep(e.retry_after)
                     telegraph[(acc_no - 1) if i % page_per_acc == 0 else acc_no].edit_page(path = self.path[i-1],
-                                              title='🔁 DREAMCATCHER CLONE BOT 🔁',
-                                              author_name='@WhitE_DeviL09',
-                                              author_url='https://t.me/white_devil09',
+                                              title='𝐌𝐇𝐃 𝐓𝐇𝐀𝐍𝐙𝐄𝐄𝐑',
+                                              author_name='@mhd_thanzeer',
+                                              author_url='https://t.me/mhd_thanzeer',
                                               html_content=self.telegraph_content[i-1])
 
         msg = f"<b>📂 Found {response_count} Results Matching '{file_name}' In {len(DRIVE_ID)} Drives</b> " \
