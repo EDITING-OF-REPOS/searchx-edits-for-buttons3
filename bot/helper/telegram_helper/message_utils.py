@@ -1,5 +1,6 @@
 from telegram.message import Message
 from telegram.update import Update
+from telegram import InlineKeyboardMarkup
 
 from bot import LOGGER, bot
 
