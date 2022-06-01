@@ -265,6 +265,8 @@ class GoogleDriveHelper:
                     url = requests.utils.requote_uri(f'{DRIVE_INDEX_URL}/{file.get("name")}')
                     # msg += f' <b>| <a href="{url}">Index Link</a></b>'
                     buttons.buildbutton("💡 Iɴᴅᴇx Lɪɴᴋ 💡", url)
+                    
+                    buttons.buildbutton("❤️‍🔥ＪƝ⟆ ᗷ〇Ƭ⟆❤️‍🔥", f"https://t.me/jns_bots")
         except Exception as err:
             if isinstance(err, RetryError):
                 LOGGER.info(f"Total attempts: {err.last_attempt.attempt_number}")
