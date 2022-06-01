@@ -236,7 +236,7 @@ class GoogleDriveHelper:
                 msg += f"\n<b>🗂 SubFolders : </b>{self.total_folders}"
                 msg += f"\n<b>📚 Files : </b>{self.total_files}"
                 # msg += f'\n\n<b><a href="{self.__G_DRIVE_DIR_BASE_DOWNLOAD_URL.format(dir_id)}">Drive Link</a></b>'
-                
+                buttons = button_build.ButtonMaker()
                 url = self.__G_DRIVE_DIR_BASE_DOWNLOAD_URL.format(dir_id)
                 buttons.buildbutton("☁️ Dʀɪᴠᴇ Lɪɴᴋ ☁️", url)
                 
