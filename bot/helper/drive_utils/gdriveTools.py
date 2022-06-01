@@ -222,6 +222,7 @@ class GoogleDriveHelper:
             LOGGER.error(f"{msg}")
             return msg
         msg = ""
+        buttons = button_build.ButtonMaker()
         try:
             meta = self.getFileMetadata(file_id)
             status.set_source_folder(meta.get('name'), self.__G_DRIVE_DIR_BASE_DOWNLOAD_URL.format(meta.get('id')))
@@ -236,7 +237,7 @@ class GoogleDriveHelper:
                 msg += f"\n<b>🗂 SubFolders : </b>{self.total_folders}"
                 msg += f"\n<b>📚 Files : </b>{self.total_files}"
                 # msg += f'\n\n<b><a href="{self.__G_DRIVE_DIR_BASE_DOWNLOAD_URL.format(dir_id)}">Drive Link</a></b>'
-                buttons = button_build.ButtonMaker()
+
                 url = self.__G_DRIVE_DIR_BASE_DOWNLOAD_URL.format(dir_id)
                 buttons.buildbutton("☁️ Dʀɪᴠᴇ Lɪɴᴋ ☁️", url)
                 
