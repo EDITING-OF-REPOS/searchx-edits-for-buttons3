@@ -230,11 +230,12 @@ class GoogleDriveHelper:
                 dir_id = self.create_directory(meta.get('name'), parent_id)
                 self.cloneFolder(meta.get('name'), meta.get('name'), meta.get('id'), dir_id, status)
                 status.set_status(True)
-                msg += f'<b>📂 Movie Name : </b><code>{meta.get("name")}</code>'
-                msg += f'\n\n<b>💽 Size : </b>{get_readable_file_size(self.transferred_size)}'
+                msg += f'<b>Thank you for using me 💫💫 \n\n</b>'
+                msg += f'<b>📂 file Name : </b><code>{meta.get("name")}</code>'
+                msg += f'\n\n<b>📊 Size : </b>{get_readable_file_size(self.transferred_size)}'
                 msg += f"\n<b>📦 Type : Folder</b>"
-                msg += f"\n<b>🗂️ SubFolders : </b>{self.total_folders}"
-                msg += f"\n<b>📚 Files : </b>{self.total_files}\n\n<b>📬 Ownerd By : @mhd_thanzeer</b>"
+                msg += f"\n<b>🗂 SubFolders : </b>{self.total_folders}"
+                msg += f"\n<b>📚 Files : </b>{self.total_files}"
                 # msg += f'\n\n<b><a href="{self.__G_DRIVE_DIR_BASE_DOWNLOAD_URL.format(dir_id)}">Drive Link</a></b>'
                 
                 url = self.__G_DRIVE_DIR_BASE_DOWNLOAD_URL.format(dir_id)
@@ -250,10 +251,10 @@ class GoogleDriveHelper:
                     typ = file.get('mimeType')
                 except:
                     typ = 'File' 
-                msg += f'<b>📂 Movie Name : </b><code>{file.get("name")}</code>'
+                msg += f'<b>📂 file Name : </b><code>{file.get("name")}</code>'
                 try:
-                    msg += f'\n\n<b>💽 Size : {get_readable_file_size(int(meta.get("size", 0)))}</b>'
-                    msg += f'\n<b>📦 Type : {typ}</b>\n\n📬 <b>Ownerd By : @mhd_thanzeer</b>'
+                    msg += f'\n\n<b>📊 Size : {get_readable_file_size(int(meta.get("size", 0)))}</b>'
+                    msg += f'\n<b>📦 Type : {typ}</b>'
                     # msg += f'\n\n<b><a href="{self.__G_DRIVE_BASE_DOWNLOAD_URL.format(file.get("id"))}">Drive Link</a></b>'
                     url = self.__G_DRIVE_BASE_DOWNLOAD_URL.format(file.get("id"))
                     buttons.append([InlineKeyboardButton("☁️ Dʀɪᴠᴇ Lɪɴᴋ ☁️", url=url)])
@@ -330,9 +331,9 @@ class GoogleDriveHelper:
             if mime_type == self.__G_DRIVE_DIR_MIME_TYPE:
                 self.gDrive_directory(meta)
                 msg += f'<b>📂 Movie Name : </b><code>{meta.get("name")}</code>'
-                msg += f'\n<b>💽 Size : {get_readable_file_size(self.total_bytes)}</b>'
+                msg += f'\n<b>📊 Size : {get_readable_file_size(self.total_bytes)}</b>'
                 msg += f'\n<b>📦 Type : Folder</b>'
-                msg += f'\n<b>🗂️ SubFolders : {self.total_folders}</b>'
+                msg += f'\n<b>🗂 SubFolders : {self.total_folders}</b>'
                 msg += f'\n<b>📚 Files : {self.total_files}</b>'
             else:
                 msg += f'<b>📂 Movie Name : </b><code>{meta.get("name")}</code>'
@@ -340,9 +341,9 @@ class GoogleDriveHelper:
                     mime_type = 'File'
                 self.total_files += 1
                 self.gDrive_file(meta)
-                msg += f'\n<b>💽 Size : {get_readable_file_size(self.total_bytes)}</b>'
+                msg += f'\n<b>📊 Size : {get_readable_file_size(self.total_bytes)}</b>'
                 msg += f'\n<b>📦 Type : {mime_type}</b>'
-                msg += f'\n<b>🗂️ Files : {self.total_files}</b>'
+                msg += f'\n<b>🗂 Files : {self.total_files}</b>'
         except Exception as err:
             if isinstance(err, RetryError):
                 LOGGER.info(f"Total attempts: {err.last_attempt.attempt_number}")
