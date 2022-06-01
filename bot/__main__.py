@@ -7,16 +7,27 @@ from bot.modules import auth, clone, count, delete, list, permission, shell, scr
 from bot.helper.telegram_helper.bot_commands import BotCommands
 from bot.helper.telegram_helper.filters import CustomFilters
 from bot.helper.telegram_helper.message_utils import *
+from telegram import InlineKeyboardMarkup
+from bot.helper.telegram_helper.message_utils import sendMessage, deleteMessage, sendMarkup
+from bot.helper.telegram_helper import button_builder
 
 def start(update, context):
+    buttons = button_builder.ButtonMaker()
+    buttons.buildbutton("❤️‍🔥 JNS BOTS ❤️‍🔥", "https://t.me/JNS_BOTS")
+    buttons.buildbutton("🧲 JNS LEECHS 🧲", "https://t.me/JNS_MIRROR")
+    reply_markup = InlineKeyboardMarkup(buttons.build_menu(1))
     if CustomFilters.authorized_user(update) or CustomFilters.authorized_chat(update):
         if update.message.chat.type == "private":
             sendMessage("<b>Access granted</b>", context.bot, update)
         else:
-            sendMessage("<b>I'm alive :)</b>", context.bot, update)
+            sendMarkup("<b>Hai..🙋🏻‍♀️🙋🏻  i'm JNS BYPASSER\ni can Bypass GDrive links, GDTOT links, GPLinks, AppDrive and DriveApp links </b>", context.bot, update, reply_markup)
         LOGGER.info('Granted: {} [{}]'.format(update.message.from_user.first_name, update.message.from_user.id))
     else:
-        sendMessage("<b>Access denied</b>", context.bot, update)
+        buttons = button_builder.ButtonMaker()
+        buttons.buildbutton("👑 DEV 👑", "https://t.me/JINTONS")
+        buttons.buildbutton("❤️‍🔥 JNS BOTS ❤️‍🔥", "https://t.me/JNS_BOTS")
+        reply_markup = InlineKeyboardMarkup(buttons.build_menu(1))
+        sendMarkup("who the helll 😤 \n\n<b>Access denied 🙅🏻‍♀️ </b>", context.bot, update, reply_markup)
         LOGGER.info('Denied: {} [{}]'.format(update.message.from_user.first_name, update.message.from_user.id))
 
 def ping(update, context):
@@ -26,6 +37,10 @@ def ping(update, context):
     editMessage(f'<code>{end_time - start_time}ms</code>', reply)
 
 def bot_help(update, context):
+    buttons = button_builder.ButtonMaker()
+    buttons.buildbutton("👑 DEV 👑", "https://t.me/JINTONS")
+    buttons.buildbutton("❤️‍🔥 JNS BOTS ❤️‍🔥", "https://t.me/JNS_BOTS")
+    reply_markup = InlineKeyboardMarkup(buttons.build_menu(1))
     help_string = f'''
 <u><i><b>Usage:</b></i></u>
 
@@ -42,6 +57,8 @@ For <i>file</i> results only:
 /{BotCommands.ListCommand} [query]: Search data on Drives
 
 /{BotCommands.CloneCommand} [url]: Copy data from Drive / AppDrive / DriveApp / GDToT to Drive
+
+/scrape [url]: Copy data from GPLinks
 
 /{BotCommands.CountCommand} [drive_url]: Count data of Drive
 
@@ -63,7 +80,7 @@ For <i>file</i> results only:
 
 /{BotCommands.HelpCommand}: Get this message
 '''
-    sendMessage(help_string, context.bot, update)
+    sendMarkup(help_string, context.bot, update, reply_markup)
 
 def log(update, context):
     sendLogFile(context.bot, update)
