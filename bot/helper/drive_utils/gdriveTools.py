@@ -238,12 +238,12 @@ class GoogleDriveHelper:
                 # msg += f'\n\n<b><a href="{self.__G_DRIVE_DIR_BASE_DOWNLOAD_URL.format(dir_id)}">Drive Link</a></b>'
                 
                 url = self.__G_DRIVE_DIR_BASE_DOWNLOAD_URL.format(dir_id)
-                buttons.append([InlineKeyboardButton("💽 𝗗𝗥𝗜𝗩𝗘 𝗟𝗜𝗡𝗞 💽", url=url)])
+                buttons.append([InlineKeyboardButton("☁️ Dʀɪᴠᴇ Lɪɴᴋ ☁️", url=url)])
                 
                 if DRIVE_INDEX_URL is not None:
                     url = requests.utils.requote_uri(f'{DRIVE_INDEX_URL}/{meta.get("name")}/')
                     # msg += f' <b>| <a href="{url}">Index Link</a></b>'
-                    buttons.append([InlineKeyboardButton("🚀 𝗜𝗡𝗗𝗘𝗫 𝗟𝗜𝗡𝗞 🚀", url=url)])
+                    buttons.append([InlineKeyboardButton("💡 Iɴᴅᴇx Lɪɴᴋ 💡", url=url)])
             else:
                 file = self.copyFile(meta.get('id'), parent_id, status)
                 try:
@@ -256,13 +256,13 @@ class GoogleDriveHelper:
                     msg += f'\n<b>📦 Type : {typ}</b>\n\n📬 <b>Ownerd By : @mhd_thanzeer</b>'
                     # msg += f'\n\n<b><a href="{self.__G_DRIVE_BASE_DOWNLOAD_URL.format(file.get("id"))}">Drive Link</a></b>'
                     url = self.__G_DRIVE_BASE_DOWNLOAD_URL.format(file.get("id"))
-                    buttons.append([InlineKeyboardButton("💽 𝗗𝗥𝗜𝗩𝗘 𝗟𝗜𝗡𝗞 💽", url=url)])
+                    buttons.append([InlineKeyboardButton("☁️ Dʀɪᴠᴇ Lɪɴᴋ ☁️", url=url)])
                 except TypeError:
                     pass
                 if DRIVE_INDEX_URL is not None:
                     url = requests.utils.requote_uri(f'{DRIVE_INDEX_URL}/{file.get("name")}')
                     # msg += f' <b>| <a href="{url}">Index Link</a></b>'
-                    buttons.append([InlineKeyboardButton("🚀 𝗜𝗡𝗗𝗘𝗫 𝗟𝗜𝗡𝗞 🚀", url=url)])
+                    buttons.append([InlineKeyboardButton("💡 Iɴᴅᴇx Lɪɴᴋ 💡", url=url)])
         except Exception as err:
             if isinstance(err, RetryError):
                 LOGGER.info(f"Total attempts: {err.last_attempt.attempt_number}")
